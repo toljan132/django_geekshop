@@ -1,29 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,700" rel="stylesheet">
-  <link rel="shortcut icon" type="image/png" href="/static/img/icon.png"/>
-  <link rel="stylesheet" href="/static/css/style.css">
-  <title>Catalog</title>
-</head>
-<body>
+{% extends 'mainapp/base.html' %}
+
+{% block title %}
+    <title>Products</title>
+{% endblock %}
+
+{% block content %}
   <div class="wrapper">
     <div class="top">
       <div class="container">
         <div class="product_range padding-site">
           <div class="header ">
               <a class="logo" href="/"><img src="/static/img/logo.svg" alt="logo"></a>
-              <ul class="menu">
-                  <li><a href="/" class="menu-link">HOME </a></li>
-                  <li><a href="#" class="menu-link-active menu-link">PRODUCTS </a></li>
-                  <li><a href="#" class="menu-link">HISTORY </a></li>
-                  <li><a href="#" class="menu-link">SHOWROOM</a></li>
-                  <li><a href="/contacts/" class="menu-link">CONTACT</a></li>
-                  <li><a href="#" class="menu-link"><img src="/static/img/search.svg" alt="search"></a></li>
-              </ul>
+              {% include 'mainapp/includes/inc_menu.html' %}
           </div>
           <span class="header_text">Our Products Range</span>
           </div>
@@ -75,10 +63,10 @@
                 </div>
             </div>
       </div>
-</div>     
-        <div class="container"> 
+</div>
+        <div class="container">
   <div class="footer padding-site">
-  
+
       <div class="footer-top">
           <div class="contact">
               <h3 class="footer-h3">CONTACT US</h3>
@@ -123,5 +111,5 @@
   </div>
   </div>
     </div>
-</body>
-</html>
+{% endblock %}
+
