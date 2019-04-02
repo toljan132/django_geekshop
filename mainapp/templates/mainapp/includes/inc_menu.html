@@ -1,0 +1,14 @@
+{% load static %}
+
+<ul class="menu">
+    <li><a class="{% if request.resolver_match.url_name == 'index' %}
+                        active
+                      {% endif %}" href="{% url 'index' %}">HOME</a></li>
+    <li><a class="{% if request.resolver_match.url_name == 'products' %}
+                        active
+                      {% endif %}" href="{% url 'products' %}">PRODUCTS</a></li>
+    <li><a class="{% if request.resolver_match.url_name == 'contacts' %}
+                        active
+                      {% endif %}" href="{% url 'contacts' %}">CONTACT</a></li>
+    <li><a href="#" ><img src="{% static '/img/search.svg' %}" alt="search"></a></li>
+</ul>
