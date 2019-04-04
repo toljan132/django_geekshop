@@ -10,5 +10,19 @@
     <li><a class="{% if request.resolver_match.url_name == 'contacts' %}
                         active
                       {% endif %}" href="{% url 'contacts' %}">CONTACT</a></li>
-    <li><a href="#" ><img src="{% static '/img/search.svg' %}" alt="search"></a></li>
+    <li><a href="#"><img src="{% static '/img/search.svg' %}" alt="search"></a></li>
+    {% if user.is_authenticated %}
+        <li>
+            <a href="{% url 'auth:edit' %}">
+                {{ user.username|title }}
+            </a>
+        </li>
+    {% endif %}
+
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'auth:logout' %}">logout</a></li>
+        {% else %}
+            <li><a href="{% url 'auth:login' %}">login</a></li><li><a href="{% url 'auth:register' %}">registration</a></li>
+        {% endif %}
+
 </ul>
