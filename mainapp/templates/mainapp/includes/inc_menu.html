@@ -17,12 +17,22 @@
                 {{ user.username|title }}
             </a>
         </li>
+        <li>
+            <a href="{% url 'basket:view' %}" class="basket">
+    <span>
+        {% if basket %} {{ basket|length }} {% endif %}
+    </span>
+            </a>
+        </li>
+
+
     {% endif %}
 
-        {% if user.is_authenticated %}
-            <li><a href="{% url 'auth:logout' %}">logout</a></li>
-        {% else %}
-            <li><a href="{% url 'auth:login' %}">login</a></li><li><a href="{% url 'auth:register' %}">registration</a></li>
-        {% endif %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'auth:logout' %}">logout</a></li>
+    {% else %}
+        <li><a href="{% url 'auth:login' %}">login</a></li>
+        <li><a href="{% url 'auth:register' %}">registration</a></li>
+    {% endif %}
 
 </ul>
