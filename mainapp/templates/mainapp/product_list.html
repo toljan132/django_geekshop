@@ -24,21 +24,16 @@
                             <img src="/media/{{ product.image }}" alt="product">
                             <div class="text"
                             <h4>{{ product.name }}</h4>
-                            <p>{{ product.description }}</p>
+                            <p>{{ product.short_desc}}</p>
                             {% for item in basket %}
-                                {% if item.product == product %}
-                                    <div>{{ item.quantity }}</div>
-                                {% endif %}
                             {% endfor %}
-                            <a href="{% url 'basket:add' product.pk %}">Добавить в корзину</a>
-                            <br>
-                            <a href="{% url 'basket:remove' product.pk %}">Удалить из корзины</a>
+                            <a href="{% url 'products:product' product.pk %}"
+                               class="btn btn-primary">Заказать</a>
                         </div>
                         </a>
 
                     {% endfor %}
             </div>
-            <a href="#" class="loading"><img src="/static/img/loading.png" alt="loading"></a>
             <div class="exclusive_product">
                 <div class="exl_left">
                     <div class="exclusive_text">
