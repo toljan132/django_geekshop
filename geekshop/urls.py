@@ -20,8 +20,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import include
 import mainapp.views as mainapp
-# import authapp.views as authapp
-# import adminapp.views as adminapp
+if settings.DEBUG:
+    import debug_toolbar
+
 
 urlpatterns = [
     url(r'^$', mainapp.main, name='index'),
@@ -31,6 +32,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^auth/', include('authapp.urls', namespace='auth')),
     url(r'^basket/', include('basketapp.urls', namespace='basket')),
+    url(r'^__debug__/', include(debug_toolbar.urls)),
+    url('^social/', include('social_django.urls', namespace='social')),
 ]
 
 if settings.DEBUG:
