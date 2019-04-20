@@ -2,10 +2,17 @@ from django.shortcuts import render, HttpResponseRedirect
 from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm
 from django.contrib import auth
 from django.urls import reverse
+from basketapp.models import Basket
+
+def get_basket(user):
+    if user.is_authenticated:
+        return Basket.objects.filter(user=user)
+    else:
+        return []
 
 
 def login(request):
-    title = 'login'
+    title = 'Login'
 
     login_form = ShopUserLoginForm(data=request.POST or None)
 
@@ -36,7 +43,7 @@ def logout(request):
     return HttpResponseRedirect(reverse('index'))
 
 def register(request):
-    title = 'registration'
+    title = 'Registration'
 
     register_form = ShopUserRegisterForm(request.POST, request.FILES)
     if request.method == 'POST':
@@ -51,7 +58,9 @@ def register(request):
 
 
 def edit(request):
-    title = 'edit'
+    basket = get_basket(request.user)
+
+    title = 'Edit'
 
     if request.method == 'POST':
         edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
@@ -61,6 +70,8 @@ def edit(request):
     else:
         edit_form = ShopUserEditForm(instance=request.user)
 
-    context = {'title': title, 'form': edit_form}
+    context = {'title': title,
+               'form': edit_form,
+               'basket': basket}
 
     return render(request, 'authapp/register.html', context)

@@ -1,5 +1,11 @@
 {% extends 'authapp/base.html' %}
 {% load static %}
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+{% block page_title %}
+    <span class="header_text">{{ title }}</span>
+{% endblock %}
 
 
 {% block content %}
@@ -7,6 +13,6 @@
         {% csrf_token %}
         {{ form.as_p }}
         <br>
-        <input class="form-control" type="submit" value="sumbit">
+        <input class="btn btn-primary" type="submit" value="Sumbit">
     </form>
 {% endblock %}
