@@ -7,70 +7,60 @@
 
 {% block content %}
     <div class="wrapper">
-    <div class="top">
-        <div class="container">
-            <div class="product_range padding-site">
-                <div class="header ">
-                    <a class="logo" href="/"><img src="/static/img/logo.svg" alt="logo"></a>
-                    {% include 'mainapp/includes/inc_menu.html' %}
-                </div>
-                <span class="header_text">Our Products Range</span>
-            </div>
-            {% include 'mainapp/includes/inc_categories_menu.html' %}
-            <div class="trending_items padding-site">
-                <div style="display: flex; flex-wrap: wrap;" class="category-products clearfix">
-                    <div style="margin: 20px" class="block">
-                        <div class="card" style="width: 18rem;">
-                            <img src="/media/{{ hot_product.image }}" class="card-img-top" alt="product">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ hot_product.name }}</h5>
-                                <p class="card-text">{{ hot_product.short_desc }}</p>
-                                <a href="{% url 'products:product' hot_product.pk %}"
-                                   class="btn btn-primary">Заказать</a>
-                                <br><br>
-                                <div style="color: red">ГОРЯЧЕЕ ПРЕДЛОЖЕНИЕ</div>
-                            </div>
-                        </div>
+        <div class="top">
+            <div class="container">
+                <div class="product_range padding-site">
+                    <div class="header ">
+                        <a class="logo" href="/"><img src="/static/img/logo.svg" alt="logo"></a>
+                        {% include 'mainapp/includes/inc_menu.html' %}
                     </div>
-
-                    {% for product in same_products %}
-                        <div style="margin: 20px" class="block">
-                            <div class="card" style="width: 18rem;">
-                                <img src="/media/{{ product.image }}" class="card-img-top" alt="product">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ product.name }}</h5>
-                                    <p class="card-text">{{ product.short_desc }}</p>
-                                    <a href="{% url 'products:product' product.pk %}"
-                                       class="btn btn-primary">Заказать</a>
-                                </div>
-                            </div>
+                    <span class="header_text">Our Products Range</span>
+                </div>
+                {% include 'mainapp/includes/inc_categories_menu.html' %}
+                <div class="trending_items padding-site">
+                    <a style="position: relative;" class="trending_item" href="{% url 'products:product' hot_product.pk %}">
+                        <div style="color: red; position: absolute; left: 20px; font-size: 40px; font-weight: 700;">Hot deal</div>
+                        <img class="product-image" src="/media/{{ hot_product.image }}" alt="product">
+                        <div class="product_text">
+                            <h4>{{ hot_product.name }}</h4>
+                            <p>{{ hot_product.short_desc }}</p>
                         </div>
+                    </a>
+                    {% for product in same_products %}
+                        <a class="trending_item" href="{% url 'products:product' product.pk %}">
+                            <img class="product-image" src="/media/{{ product.image }}" alt="product">
+                            <div class="product_text">
+                                <h4>{{ product.name }}</h4>
+                                <p>{{ product.short_desc }}</p>
+                            </div>
+                        </a>
                     {% endfor %}
                 </div>
-                <div class="exclusive_product">
-                    <div class="exl_left">
-                        <div class="exclusive_text">
-                            <h4 class="exclusive-h4">exclusive</h4>
-                            <h2 class="exclusive-h2">Fishnet Chair</h2>
-                            <p class="exclusive-p">
-                                Seat and back with upholstery made of cold cure foam. Steel frame, available in matt
-                                powder-coated black
-                                or highly polished chrome.
-                            </p>
-                            <a href="#" class="button">order us <img class="arrow" src="/static/img/arrow.png"
-                                                                     alt="arrow"></a>
+                    <div class="exclusive_product">
+                        <div class="exl_left">
+                            <div class="exclusive_text">
+                                <h4 class="exclusive-h4">exclusive</h4>
+                                <h2 class="exclusive-h2">Fishnet Chair</h2>
+                                <p class="exclusive-p">
+                                    Seat and back with upholstery made of cold cure foam. Steel frame, available in matt
+                                    powder-coated black
+                                    or highly polished chrome.
+                                </p>
+                                <a href="#" class="button">order us <img class="arrow" src="/static/img/arrow.png"
+                                                                         alt="arrow"></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="exl_right">
-                        <div class="exclusive_text">
-                            <h4 class="exclusive-h4">exclusive</h4>
-                            <h2 class="exclusive-h2">Fishnet Chair</h2>
-                            <p class="exclusive-p">
-                                Seat and back with upholstery made of cold cure foam. Steel frame, available in matt
-                                powder-coated black
-                            </p>
-                            <a href="#" class="button">order us <img class="arrow" src="/static/img/arrow.png"
-                                                                     alt="arrow"></a>
+                        <div class="exl_right">
+                            <div class="exclusive_text">
+                                <h4 class="exclusive-h4">exclusive</h4>
+                                <h2 class="exclusive-h2">Fishnet Chair</h2>
+                                <p class="exclusive-p">
+                                    Seat and back with upholstery made of cold cure foam. Steel frame, available in matt
+                                    powder-coated black
+                                </p>
+                                <a href="#" class="button">order us <img class="arrow" src="/static/img/arrow.png"
+                                                                         alt="arrow"></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -103,7 +93,8 @@
                     </div>
                     <div class="touch">
                         <h3 class="footer-h3">LET'S STAY IN TOUCH</h3>
-                        <p class="contact-p">Subscribe to know about our latest news, products and spoecial offers just
+                        <p class="contact-p">Subscribe to know about our latest news, products and spoecial offers
+                            just
                             for subscribers.</p>
                         <form class="email-form" action="#">
                             <input class="contact-email" type="text" placeholder="your email adress">
