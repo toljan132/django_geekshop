@@ -7,31 +7,46 @@
 
 {% block content %}
     <div class="wrapper">
-        <div class="top">
-            <div class="container">
-                <div class="product_range padding-site">
-                    <div class="header ">
-                        <a class="logo" href="/"><img src="/static/img/logo.svg" alt="logo"></a>
-                        {% include 'mainapp/includes/inc_menu.html' %}
+    <div class="top">
+        <div class="container">
+            <div class="product_range padding-site">
+                <div class="header ">
+                    <a class="logo" href="/"><img src="/static/img/logo.svg" alt="logo"></a>
+                    {% include 'mainapp/includes/inc_menu.html' %}
+                </div>
+                <span class="header_text">Our Products Range</span>
+            </div>
+            {% include 'mainapp/includes/inc_categories_menu.html' %}
+            <div class="trending_items padding-site">
+                <div style="display: flex; flex-wrap: wrap;" class="category-products clearfix">
+                    <div style="margin: 20px" class="block">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/media/{{ hot_product.image }}" class="card-img-top" alt="product">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ hot_product.name }}</h5>
+                                <p class="card-text">{{ hot_product.short_desc }}</p>
+                                <a href="{% url 'products:product' hot_product.pk %}"
+                                   class="btn btn-primary">Заказать</a>
+                                <br><br>
+                                <div style="color: red">ГОРЯЧЕЕ ПРЕДЛОЖЕНИЕ</div>
+                            </div>
+                        </div>
                     </div>
-                    <span class="header_text">Our Products Range</span>
+
+                    {% for product in same_products %}
+                        <div style="margin: 20px" class="block">
+                            <div class="card" style="width: 18rem;">
+                                <img src="/media/{{ product.image }}" class="card-img-top" alt="product">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ product.name }}</h5>
+                                    <p class="card-text">{{ product.short_desc }}</p>
+                                    <a href="{% url 'products:product' product.pk %}"
+                                       class="btn btn-primary">Заказать</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-                {% include 'mainapp/includes/inc_categories_menu.html' %}
-                <div class="trending_items padding-site">
-                    <a class="trending_item" href="#" style="background-image: url(/static/img/trending1.jpg)"></a>
-                    <a class="trending_item" href="#" style="background-image: url(/static/img/trending2.jpg)"></a>
-                    <a class="trending_item" href="#" style="background-image: url(/static/img/trending3.jpg)"></a>
-                    <a class="trending_item" href="#" style="background-image: url(/static/img/trending4.jpg)"></a>
-                    <a class="trending_item" href="#" style="background-image: url(/static/img/trending5.jpg)"></a>
-                    <a class="trending_item" href="#" style="background-image: url(/static/img/trending6.jpg)"></a>
-                    <a class="trending_item" href="#" style="background-image: url(/static/img/trending1.jpg)"></a>
-                    <a class="trending_item" href="#" style="background-image: url(/static/img/trending2.jpg)"></a>
-                    <a class="trending_item" href="#" style="background-image: url(/static/img/trending3.jpg)"></a>
-                    <a class="trending_item" href="#" style="background-image: url(/static/img/trending4.jpg)"></a>
-                    <a class="trending_item" href="#" style="background-image: url(/static/img/trending5.jpg)"></a>
-                    <a class="trending_item" href="#" style="background-image: url(/static/img/trending6.jpg)"></a>
-                </div>
-                <a href="#" class="loading"><img src="/static/img/loading.png" alt="loading"></a>
                 <div class="exclusive_product">
                     <div class="exl_left">
                         <div class="exclusive_text">
