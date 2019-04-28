@@ -19,7 +19,7 @@
         </li>
         <li>
             <a href="{% url 'basket:view' %}" class="basket">
-    <span class="basket_list">
+    <span id="top_basket_list">
 
         {{ basket_items.0.total_cost|floatformat:0 }} $
         ({{ basket_items.0.total_quantity }} шт)

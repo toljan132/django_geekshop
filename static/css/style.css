@@ -845,3 +845,7 @@ body {
     margin-top: 100px;
     margin-bottom: 100px;
 }
+
+.basket_record img {
+    width: 200px;
+}

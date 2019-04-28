@@ -6,6 +6,7 @@ from mainapp.models import ProductCategory, Product
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
 from authapp.models import ShopUser
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, HttpResponse
 
 
 class ProductCategoryListView(ListView):
@@ -64,17 +65,12 @@ class ProductCategoryDeleteView(DeleteView):
 class ShopUserListView(ListView):
     model = ShopUser
     template_name = 'adminapp/users.html'
-    success_url = reverse_lazy('admin_custom:users')
 
     def get_context_data(self, **kwargs):
         context = super(ShopUserListView, self).get_context_data(**kwargs)
         context['title'] = 'Список пользователей'
         context['page_title'] = 'Список пользователей'
         return context
-
-    @method_decorator(user_passes_test(lambda u: u.is_superuser))
-    def dispatch(self, request, *args, **kwargs):
-        super(ShopUserListView, self).dispatch(request, *args, **kwargs)
 
 
 class ShopUserCreateView(CreateView):
