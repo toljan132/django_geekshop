@@ -11,19 +11,21 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from configparser import ConfigParser
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.dirname(BASE_DIR)
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
+local_config_path = os.path.join(BASE_DIR, 'conf', 'local.conf')
+config = ConfigParser()
+config.read(local_config_path)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'nt*823e&*jgab-^zc9k_)*y!zn__b1^u8s_nm#5nm975fk#jh)'
+SECRET_KEY = config.get('main', 'SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config.getboolean('main', 'DEBUG')
 
 ALLOWED_HOSTS = ['192.168.43.115', '127.0.0.1']
 
@@ -36,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
+    'social_django',
     'mainapp.apps.MainappConfig',
     'authapp.apps.AuthappConfig',
     'basketapp.apps.BasketappConfig',
@@ -50,6 +54,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+]
+
+INTERNAL_IPS = [
+    '127.0.0.1'
 ]
 
 ROOT_URLCONF = 'geekshop.urls'
@@ -127,3 +136,9 @@ MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
 
 AUTH_USER_MODEL = 'authapp.ShopUser'
 LOGIN_URL = '/auth/login/'
+
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = config.get('OAUTH2', 'SOCIAL_AUTH_VK_OAUTH2_KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = config.get('OAUTH2', 'SOCIAL_AUTH_VK_OAUTH2_SECRET')
+
+LOGIN_REDIRECT_URL = '/'
