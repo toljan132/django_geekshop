@@ -64,6 +64,7 @@ class ProductCategoryDeleteView(DeleteView):
 class ShopUserListView(ListView):
     model = ShopUser
     template_name = 'adminapp/users.html'
+    success_url = reverse_lazy('admin_custom:users')
 
     def get_context_data(self, **kwargs):
         context = super(ShopUserListView, self).get_context_data(**kwargs)

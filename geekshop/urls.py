@@ -20,8 +20,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import include
 import mainapp.views as mainapp
-# import authapp.views as authapp
-# import adminapp.views as adminapp
+import authapp.views as authapp
+import adminapp.views as adminapp
 
 urlpatterns = [
     url(r'^$', mainapp.main, name='index'),

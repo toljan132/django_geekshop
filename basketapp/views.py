@@ -21,7 +21,6 @@ def basket_add(request, pk):
 
     product = get_object_or_404(Product, pk=pk)
     basket = request.user.basket.filter(product=pk).first()
-
     if basket:
         basket.quantity += 1
         basket.save()
@@ -35,8 +34,7 @@ def basket_add(request, pk):
 @login_required
 def basket_remove(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    basket = request.user.basket.filter(product=pk).first()
-
+    basket = request.user.basket.filter(pk=pk).first()
     if basket:
         if basket.quantity > 1:
             basket.quantity -= 1
